@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "USHateCrime"
+author: "Yunshan An; Zihao Liu; Yiyuan Xu"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
