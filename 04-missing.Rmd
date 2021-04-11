@@ -1,1 +1,177 @@
 # Missing values
+
+In this part, we study the missing values in our dataset. Having better understanding of missing values helps us to know our dataset better and supports our analysis later.
+
+
+The data files we use are:
+
+* BiasMotivation.csv
+
+* location.csv
+
+* Offenders.csv
+
+* Mixed_data.csv
+
+* year.csv
+
+* d3_data.csv
+ 
+
+
+```{r, include=FALSE}
+remotes::install_github("jtr13/extracat")
+```
+
+
+## Location and Number of Missing Values
+
+We have a look at each data file to see whether there exist some missing values. If the answer is yes, then we will show the location and the number of missing values in this data file.
+
+```{r, include=FALSE}
+library(tidyverse)
+library(rio)
+data <- read.csv(file = "data/Mixed_data.csv") %>% na_if("N/A")
+md <- data %>% 
+  gather(key,value, -State) %>% mutate(missing = ifelse(is.na(value),"yes","no"))
+
+bias <- read_csv("data/BiasMotivation.csv")
+
+location_data<-read_csv("data/location.csv")
+offenders<-read_csv("data/Offenders.csv")
+
+year <- read_csv("data/year.csv")
+
+d3 <- read_csv("data/d3_data.csv")%>% na_if("NaN")
+```
+
+
+
+First, given a data file, we show how many missing values are in each column. In 'BiasMotivation.csv' file,
+```{r,echo=FALSE}
+colSums(is.na(bias))
+```
+
+There is no missing value in this file.
+
+
+
+In 'location.csv' file,
+```{r, echo=FALSE}
+colSums(is.na(location_data))
+```
+
+
+There is no missing value in this file.
+
+
+
+In 'Offenders.csv' file,
+```{r, echo=FALSE}
+colSums(is.na(offenders))
+```
+
+
+There is no missing value in this file.
+
+
+
+In 'Mixed_data.csv' file,
+```{r, echo=FALSE}
+colSums(is.na(data))
+```
+
+
+There are eleven missing values in the data file. There are two NAs in education level/high_school_rate/bachelor_rate/cost of living and one in offenses cases/political party/population. Next, we hope to know where these missing values are.
+
+
+```{r,fig.width=13,fig.height=8,echo=FALSE}
+ggplot(md, aes(x=key ,y = fct_rev(State), fill = missing)) +
+  geom_tile(color = "white") + scale_fill_viridis_d() +
+  ggtitle("Missing data in the dataset")+
+  ylab("State")+ xlab("")+theme_bw()
+```
+
+
+
+
+This graph shows us clearly where NAs are in the data. Since the source data about cost of living and education which includes variables Education.level, Bachelor_Rate and High_School_Rate only talks about states in the U.S., District of Columbia as a federal district and Puerto Rico as a major territory do not have values for these four variables. Puerto Rico's values for offenses, political party and population are missing. This is also because that Puerto Rico is a major territory of the U.S. and the source data of hate crimes does not include data for that.
+
+
+
+
+In 'year.csv' file,
+```{r, echo=FALSE}
+colSums(is.na(year))
+```
+
+
+There are three missing values in this file. Due to the construction of the data file, 'geom_tile' seems to be inefficient and unclear to show the location of missing values. Also, since there are not many missing values in the data file, we decide to print rows including NAs directly.
+
+```{r, echo=FALSE}
+year_missing <- year %>% filter_all(any_vars(is.na(.))) 
+show(year_missing)
+```
+
+It shows that New Jersey in 2012 has no data for its hate crime cases, population covered and of course the hate crime rate per 100k.
+
+
+
+In 'd3_data.csv' file,
+```{r, echo=FALSE}
+colSums(is.na(d3))
+```
+
+
+As this file includes all information in 'year.csv' file and just adds one more column about income, we realize that the three missing values are missing information of New Jersey in 2012 in 'year.csv' file. The row including NAs printed below confirm our ideas.
+
+
+```{r, echo=FALSE}
+d3_missing <- d3 %>% filter_all(any_vars(is.na(.))) 
+show(d3_missing)
+```
+
+Therefore, we will not plot the missing patterns of this file since this is redundant and meaningless.
+
+
+##  Patterns of Missing values
+
+As 'Mixed_data.csv' and 'year.csv' have missing values, here we will explore patterns of missing values in the two files.
+```{r,include=FALSE}
+library(extracat)
+```
+
+
+
+
+
+In 'Mixed_data.csv' file, 
+
+
+```{r,fig.width=10,fig.height=6, warning=FALSE, echo=FALSE}
+visna(data, sort = "b")
+```
+
+
+
+
+The graph shows that there are three missing patterns in the 'Mixed_data.csv'. The most frequent one is that no data is missing. The remaining two patterns are:
+
+* One case has missing values in four columns Education.level, Bachelor_Rate, High_School_Rate and Cost.of.Living.
+
+* One case has missing values in seven columns Education.level, Bachelor_Rate, High_School_Rate, Cost.of.Living, Offenses, Political.Party and Population.
+
+
+
+
+In 'year.csv' file,
+
+```{r,warning=FALSE, echo=FALSE}
+visna(year, sort = "b")
+```
+
+
+
+
+The graph shows that there are two missing patterns in the 'Mixed_data.csv'. The most frequent one is that no data is missing. The remaining one is that one has missing values in three columns Case, Population and hate_crime_per_100k.
+
