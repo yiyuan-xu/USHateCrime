@@ -1,0 +1,14 @@
+Offenders,Num,Group
+White,"3,365",Race
+Black/African American,"1,532",Race
+American Indian/Alaska Native,68,Race
+Asian,58,Race
+Pacific Islander,22,Race
+Multi Races,425,Race
+Unknown,936,Race
+Hispanic/Latino,547,Ethnicity
+Not Hispanic/Latino,"1,801",Ethnicity
+Multi Ethnicities,103,Ethnicity
+Unknown,"2,992",Ethnicity
+≥18,"4,734",Age
+<18,865,Age
