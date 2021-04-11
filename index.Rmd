@@ -7,3 +7,6 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+
+Recently, hate crimes against Asian Americans surge in US, which attracted widespread attention and even large-scale demonstrations. According to an FBI report, the incidents about hate crimes rose to the highest level in more than a decade This shows that hate crime has increasingly become a serious social problem in the United States. Compared with other crimes, hate crime is more special because it distinguishes on the basis of motives. By the definition of FBI, hate crime is criminal offense against a person or property motivated in whole or in part by an offender’s bias against a race, religion, disability, sexual orientation, ethnicity, gender, or gender identity. The purpose of our project is to use the data about hate crime provided by FBI to study some characteristics of hate crime in the United States, such as motivation, location type, offenders, trends in the recent decade, and so on. In addition, we will collect some socioeconomic factors data and compare the hate crime rate of each state to study the possible impacts of different factors on hate crime. 
+
