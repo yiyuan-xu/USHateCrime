@@ -1,0 +1,36 @@
+Bias_motivation,Incidents,Offenses,Victims,Offenders,Category
+Anti-White,666,755,775,645,Race/Ethnicity/Ancestry
+Anti-Black or African American,1930,2314,2391,1682,Race/Ethnicity/Ancestry
+Anti-American Indian or Alaska Native,119,126,135,101,Race/Ethnicity/Ancestry
+Anti-Asian,158,205,215,153,Race/Ethnicity/Ancestry
+Anti-Native Hawaiian or Other Pacific Islander,21,25,26,26,Race/Ethnicity/Ancestry
+"Anti-Multiple Races, Group",134,171,173,82,Race/Ethnicity/Ancestry
+Anti-Arab,95,122,126,86,Race/Ethnicity/Ancestry
+Anti-Hispanic or Latino,527,676,693,547,Race/Ethnicity/Ancestry
+Anti-Other Race/Ethnicity/Ancestry,313,390,396,228,Race/Ethnicity/Ancestry
+Anti-Jewish,953,995,1032,602,Religion
+Anti-Catholic,64,66,66,42,Religion
+Anti-Protestant,24,24,24,19,Religion
+Anti-Islamic (Muslim),176,219,227,145,Religion
+Anti-Other Religion,88,108,108,56,Religion
+"Anti-Multiple Religions, Group",37,42,44,26,Religion
+Anti-Mormon,12,14,15,8,Religion
+Anti-Jehovah's Witness,7,7,7,7,Religion
+"Anti-Eastern Orthodox (Russian, Greek, Other)",44,47,49,34,Religion
+Anti-Other Christian,49,60,65,23,Religion
+Anti-Buddhist,5,5,5,5,Religion
+Anti-Hindu,7,7,7,4,Religion
+Anti-Sikh,49,50,60,36,Religion
+Anti-Atheism/Agnosticism/etc.,6,6,6,5,Religion
+Sexual Orientation,1195,1395,1429,1250,Sexual Orientation
+Anti-Gay (Male),746,867,883,828,Sexual Orientation
+Anti-Lesbian,115,142,143,107,Sexual Orientation
+"Anti-Lesbian, Gay, Bisexual, or Transgender (Mixed Group)",291,342,357,279,Sexual Orientation
+Anti-Heterosexual,17,17,19,14,Sexual Orientation
+Anti-Bisexual,26,27,27,22,Sexual Orientation
+Anti-Physical,49,53,53,33,Disability
+Anti-Mental,108,116,117,123,Disability
+Anti-Male,17,18,18,17,Gender
+Anti-Female,52,62,63,50,Gender
+Anti-Transgender,151,173,175,190,Gender Identity
+Anti-Gender Non-Conforming,47,51,52,43,Gender Identity
