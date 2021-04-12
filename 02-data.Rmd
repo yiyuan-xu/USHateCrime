@@ -1,14 +1,17 @@
 # Data sources
 
+
+## Sources of Data
+
 * Hate Crime (2010-2019):
 
-The main source data we used is from the official website of [FBI's UCR Program](https://www.fbi.gov/services/cjis/ucr/) which generates reliable crime statistics. It contains data of [hate crimes in the United States over the past decades](https://ucr.fbi.gov/hate-crime). In another table, we select the hate [crime data in 2019(the latest one)](https://ucr.fbi.gov/hate-crime/2019) as cross-sectional data to study the composition of hate crime and possible influencing factors. This dataset collects details about offenders’ bias motivation associated with 13 offense types already being reported to the UCR Program: murder and nonnegligent manslaughter, rape, aggravated assault, simple assault, intimidation, human trafficking—commercial sex acts, and human trafficking—involuntary servitude (crimes against persons); and robbery, burglary, larceny-theft, motor vehicle theft, arson, and destruction/damage/vandalism (crimes against property) in each state. 
+The main source data we used is from the official website of [FBI's UCR Program](https://www.fbi.gov/services/cjis/ucr/) which generates reliable crime statistics. It contains data of [hate crimes in the United States over the past decades](https://ucr.fbi.gov/hate-crime). In another table, we select the [hate crime data in 2019(the latest one)](https://ucr.fbi.gov/hate-crime/2019) as cross-sectional data to study the composition of hate crime and possible influencing factors. This dataset collects details about offenders’ bias motivation associated with 13 offense types already being reported to the UCR Program: murder and nonnegligent manslaughter, rape, aggravated assault, simple assault, intimidation, human trafficking—commercial sex acts, and human trafficking—involuntary servitude (crimes against persons); and robbery, burglary, larceny-theft, motor vehicle theft, arson, and destruction/damage/vandalism (crimes against property) in each state. 
  
 
 
 * Socioeconomic factors (2019) [Median Income, Citizenship, Race/Ethnicity, Unemployment, Political Party]:
 
-We obtain part of socioeconomic factors we think that may have impacts on hate crimes from [Kaiser Family Foundation's website](https://www.kff.org/). This website is a nonprofit organization focusing on national health issues, as well as the U.S. role in global health policy. We use data on population demographics and wealth including breakdowns by [race/ethnicity (proportion of white)](https://www.kff.org/other/state-indicator/distribution-by-raceethnicity/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D), [poverty by demographic groupings](https://www.kff.org/other/state-indicator/poverty-rate-by-raceethnicity/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D) and [unemployment rates](https://www.kff.org/other/state-indicator/unemployment-rate/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D).
+We obtain part of socioeconomic factors we think that may have impacts on hate crimes from [Kaiser Family Foundation's website](https://www.kff.org/). This website is a nonprofit organization focusing on national health issues, as well as the U.S. role in global health policy. We use data on population demographics and wealth including breakdowns by [median annual household income](https://www.kff.org/other/state-indicator/median-annual-income/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D), [citizenship status](https://www.kff.org/other/state-indicator/distribution-by-citizenship-status/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D), [race/ethnicity (proportion of white)](https://www.kff.org/other/state-indicator/distribution-by-raceethnicity/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D), [unemployment rates](https://www.kff.org/other/state-indicator/unemployment-rate/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D) and [political party (governor political affiliation)](https://www.kff.org/other/state-indicator/state-political-parties/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D).
  
 
 * Education (2019):
@@ -17,7 +20,11 @@ The educational data is obtained from [World Population Review website](https://
  
  
 * Income (2010-2019): 
+
 Since the Kaiser Family Foundation's website only has median household income data for 2019, we collected historical income data from [Federal Reserve Economic Data (FRED)](https://fred.stlouisfed.org/). This is a database maintained by the Research division of the Federal Reserve Bank of St. Louis that has more than 765,000 economic time series from 96 sources. We collected [income data for year between 2010 and 2019](https://fred.stlouisfed.org/release/tables?rid=249&eid=259515&od=2010-01-01#).
+
+
+
 ## Data interpretation
 
 * Bias Motivation file
@@ -45,7 +52,7 @@ Since the Kaiser Family Foundation's website only has median household income da
 
 1) State[char]: the name of a state
 2) Offenses[numeric]: the number of hate crimes
-3) Median.Income[numeric]: median income in each state
+3) Median.Income[numeric]: median annual household income in each state in dollars
 4) Education.Level[numeric]: the scores represent educational Attainment and quality of Education
 5) High_School_Rate[numeric]: the share of adults over 25 years old with a high school diploma
 6) Bachelor_Rate[numeric]: the share of adults over 25 years old with a Bachelors degree
@@ -71,14 +78,16 @@ Since the Kaiser Family Foundation's website only has median household income da
 2) Offenses[numeric]: the number of hate crimes
 3) Population[numeric]: population covered in hate crime report
 4) Crime_Rate[numeric]: the number of hate crime cases per 100k population
-5) Median_Income[numeric]: 
+5) Median_Income[numeric]: median income in each state in dollars
 6) Year[date]: the year of report
 
 
 
 ## The limitations of data:
+
 - It remains unclear how comprehensive UCR's data is since data is submitted voluntarily.
 - Some data in UCR's publication may not be comparable to those in prior editions of Hate Crime Statistics because of differing levels of participation from year to year.
 - Most of the data is presented in the overall statistical data of each state, which may ignore some detailed features, and it also makes us seem to have very few observational data.
-
+- For race/ethnicity in factor part, we just consider two types which are white and non-white.
+- Political party for each state here is only determined by the governor's political affiliation.
 
