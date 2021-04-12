@@ -1,0 +1,36 @@
+Bias_motivation,Incidents,Category
+Anti-White,666,Race/Ethnicity/Ancestry
+Anti-Black or African American,1930,Race/Ethnicity/Ancestry
+Anti-American Indian or Alaska Native,119,Race/Ethnicity/Ancestry
+Anti-Asian,158,Race/Ethnicity/Ancestry
+Anti-Native Hawaiian or Other Pacific Islander,21,Race/Ethnicity/Ancestry
+"Anti-Multiple Races, Group",134,Race/Ethnicity/Ancestry
+Anti-Arab,95,Race/Ethnicity/Ancestry
+Anti-Hispanic or Latino,527,Race/Ethnicity/Ancestry
+Anti-Other Race/Ethnicity/Ancestry,313,Race/Ethnicity/Ancestry
+Anti-Jewish,953,Religion
+Anti-Catholic,64,Religion
+Anti-Protestant,24,Religion
+Anti-Islamic (Muslim),176,Religion
+Anti-Other Religion,88,Religion
+"Anti-Multiple Religions, Group",37,Religion
+Anti-Mormon,12,Religion
+Anti-Jehovah's Witness,7,Religion
+"Anti-Eastern Orthodox (Russian, Greek, Other)",44,Religion
+Anti-Other Christian,49,Religion
+Anti-Buddhist,5,Religion
+Anti-Hindu,7,Religion
+Anti-Sikh,49,Religion
+Anti-Atheism/Agnosticism/etc.,6,Religion
+Sexual Orientation,1195,Sexual Orientation
+Anti-Gay (Male),746,Sexual Orientation
+Anti-Lesbian,115,Sexual Orientation
+"Anti-Lesbian, Gay, Bisexual, or Transgender (Mixed Group)",291,Sexual Orientation
+Anti-Heterosexual,17,Sexual Orientation
+Anti-Bisexual,26,Sexual Orientation
+Anti-Physical,49,Disability
+Anti-Mental,108,Disability
+Anti-Male,17,Gender
+Anti-Female,52,Gender
+Anti-Transgender,151,Gender Identity
+Anti-Gender Non-Conforming,47,Gender Identity
