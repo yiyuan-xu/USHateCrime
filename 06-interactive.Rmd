@@ -1,3 +1,26 @@
 # Interactive component
 
+## Compare crime rate, median income and total cases between different states over time
+<script src="https://d3js.org/d3.v6.js"></script>
+<b>Compare different stuffs</b>
+<select id="selectButton1"></select>
+<select id="selectButton2"></select>
+<br>
+<br>
+<b>Choose the factor you want to compare</b>
+<select id="selectButton3"></select>
+<div id="my_dataviz"></div>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
+```{r echo=FALSE}
+library(r2d3)
+```
+
+
+
+```{r echo=FALSE}
+df61 = read.csv("./data/d3_data.csv",header = TRUE)
+
+
+r2d3(data=df61, script = "./interactive.js")
+```
