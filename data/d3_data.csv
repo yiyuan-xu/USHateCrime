@@ -1,4 +1,4 @@
-State,Offenses,Population,Crime Rate,Median Income,Year
+State,Offenses,Population,Crime_Rate,Median_Income,Year
 Alabama,0.0,85670.0,0.0,56200,2019
 Alabama,0.0,1865517.0,0.0,50841,2018
 Alabama,9.0,2918324.0,0.308396189045493,53049,2017
