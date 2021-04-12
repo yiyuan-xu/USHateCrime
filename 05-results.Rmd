@@ -107,7 +107,7 @@ map_data = mixed_data %>% select(State, Crime_rate) %>% rename(state=State)
 clean_data <- filter(mixed_data, State != "District of Columbia" & State != "Hawaii")
 
 # parcoord_date
-parcoord_data = select(clean_data,c("State","Median.Income","Bachelor_Rate","Race.Ethnicity","Crime_rate","Political.Party"))
+parcoord_data = select(clean_data,c("State","Median.Income","Education.Level","Citizenship.Status","Race.Ethnicity","Unemployment.Rate","Crime_rate","Political.Party"))
 ```
 
 
@@ -132,16 +132,26 @@ This is the plot that shows 2019's hate crime cases per 100k population in each 
 ### Factors that may influence hate crimes
 
 
+Then, several factors are chosen and we hope to find out whether there exist some relationships between hate crime and these factors. We use hate crime rate i.e. hate crime cases per 100k population to represent hate crimes and the factors we explore below are median annual household income, education level, citizenship status (the proportion of citizens), race/ethnicity (the proportion of the white), unemployment rate and political party of each state.
+
+
+
 ```{r,echo=FALSE}
 parcoords(parcoord_data, rownames = F, brushMode = "1D-axes",reorderable = T,color = list(colorBy = "Political.Party"),withD3 = T, width=800, height = 700,alpha=0.7)
 ```
 
+
+
+The plot above shows a overall conditions of all factors and hate crime rate grouped by political party. It is really hard to see any specific distribution, cluster or group directly in this plot. Every state has its own political, social and economic situations, which makes their values for all variables distinct. Thus, we then build a matrix of plots that can provides us with correlation information between any two numeric variables below.
+
+
+
 ```{r, echo=FALSE,fig.width=10,fig.height=12,message=FALSE}
-ggpairs(clean_data,column = c(14,3,4,5,6,8,10),cardinality_threshold = 49,)
+ggpairs(clean_data,column = c(14,3,4,7,8,10),cardinality_threshold = 49,)
 ```
 
 
-
+Since we are mainly interested in the relationship between hate crime rate and factors, the first row of this matrix of plots is most important here. From the first row, we find out that median income, education level and unemployment rate are positively correlated with hate crime rate while citizen status and race/ethnicity are negatively correlated with hate crime rate. Although the strength of all correlations are not very strong since the largest one is around +0.3 and the smallest one is almost zero, it may still be valuable to explore those interesting correlations in more details. Therefore, we carefully study the relationship between hate crime rate and each factor in the following part.
 
 
 
@@ -236,7 +246,7 @@ These two plots display the relationship between citizenship status (the proport
 ggplot(clean_data, aes(x=Race.Ethnicity, y=Crime_rate))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
-  theme_classic(14)+ylab("hate crime per 100k")+theme(legend.position="none")
+  theme_classic(14)+ylab("hate crime per 100k")+xlab("Race/Ethnicity")+theme(legend.position="none")
 ```
 
 This picture depicts the race composition(the proportion of white people) and hate crime rate. Even if the race rate keeps increasing, the distribution of hate crime still appears chaotic, which shows that the composition of Race/Ethnicity does not have a relatively intuitive impact on the hate crime rate.
