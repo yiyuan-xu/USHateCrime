@@ -33,10 +33,10 @@ location_data<-read_csv("data/location.csv")
 location_data$Num<-as.numeric(location_data$Num)
 ggplot(location_data,aes(x=fct_reorder(Location,Num),y=Num)) + 
   geom_col(fill = "lightblue") + coord_flip()+
-  xlab("Location")+ggtitle("Hate Crime by Location in 2019")
+  xlab("Location")+ylab("Hate crime number")+ggtitle("Hate Crime by Location in 2019")
 ```
 
-The plot above shows that the locations where hate crimes happened most frequently in 2019 are victims' homes. Home, a place that usually gives people a feeling of peace and security, is actually a place where crimes happen frequently. This observation reminds us to pay attention to security problems even when we are at home. Other places that hate crimes may often happen are streets, highways, roads and sidewalks. A school is also a location that hate crimes occur frequently, which makes sense as it includes people from all kinds of races and ethnicities. Hate crimes not often occur in places such as tribal lands, docks and gambling facilities.
+The plot above shows that the locations where hate crimes happened most frequently in 2019 are victims' homes. Home, a place that usually gives people a feeling of peace and security, is actually a place where crimes happen frequently. It may partially because that home is the easiest place to locate a victim. Also, hate crimes against properties are also likely to happen near home. This observation reminds us to pay attention to security problems even when we are at home. Other places that hate crimes may often happen are streets, highways, roads and sidewalks. A school is also a location that hate crimes occur frequently, which makes sense as it includes people from all kinds of races and ethnicities. Hate crimes not often occur in places such as tribal lands, docks and gambling facilities.
 
 
 
@@ -45,16 +45,16 @@ The plot above shows that the locations where hate crimes happened most frequent
 offenders<-read_csv("data/Offenders.csv")
 offenders$Num<-as.numeric(offenders$Num)
 a<- offenders%>%filter(Group == "Race") %>% ggplot(aes(x=fct_reorder(Offenders,Num),y=Num)) + 
-  geom_col(fill = 'lightblue')+xlab("")+ggtitle("Race")
+  geom_col(fill = 'lightblue')+xlab("Hate crime number")+ylab("Race")+ggtitle("Offenders by Race")
 b<- offenders%>%filter(Group == "Ethnicity") %>% ggplot(aes(x=fct_reorder(Offenders,Num),y=Num))  + 
-  geom_col(fill = 'yellowgreen') +xlab("")+ggtitle("Ethnicity") 
+  geom_col(fill = 'yellowgreen') +xlab("Hate crime number")+ylab("Ethnicity")+ggtitle("Offenders by Ethnicity") 
 c<- offenders%>%filter(Group == "Age") %>% ggplot(aes(x=fct_reorder(Offenders,Num),y=Num))  + 
-  geom_col(fill = 'orange') +xlab("")+ggtitle("Age") 
+  geom_col(fill = 'orange') +xlab("Hate crime number")+ylab("Age")+ggtitle("Offenders by Age") 
 grid.arrange(a, b, c,nrow=1,widths = c(6,3,2))
 ```
 
 
-These bar charts show information of known offenders about their races, ethnicities and ages. For races, most offenders are White and then Black/African Americans. For ethnicities, most offenders do not provide their ethnicities. Most of the rest are not Hispanic or Latino. All these match the distributions of people's races and ethnicities in the US. For ages, the majority are equal to or greater than eighteen years old. 
+These bar charts show information of known offenders about their races, ethnicities and ages. For races, most offenders are White and then Black/African Americans. For ethnicities, most offenders do not provide their ethnicities. Most of the rest are not Hispanic or Latino. All these match the distributions of people's races and ethnicities in the US. For ages, the majority are equal to or greater than eighteen years old, but it is still noticeable that there are around 1000 hate crimes conducted by people under eighteen.
 
 
 
@@ -70,7 +70,7 @@ small_class$freq<-as.numeric(small_class$freq)
 treemap(small_class,index = c("category","Class"), vSize = "freq", vColor = "Class",type="index",title='Treemap of Bias motivation behind hate crime in US', palette = "RdBu")
 ```
 
-The graph above shows the distribution of bias motivation in 2019.  We can see that the motivations for hate are as diverse as the people who form the racial, religious, and mixed-gender melting pot that is the United States of America. There are six main types of bias motivation including Race/Ethnicity/Ancestry/Bias, Religion, Sexual Orientation, Gender Identity, Disability and Gender, of which the largest proportion is Race/Ethnicity/Ancestry Bias, accounting for more than 50% of all. It means bias between different races is the main cause of most hate crimes. In addition, different religious beliefs may also lead to some hate crimes, which may be due to the exclusivity of some religious beliefs to some extend. The bias motivation of hate crime are not only towards some specific minorities, it exists anywhere between many different groups.
+The graph above shows the distribution of bias motivation in 2019.  We can see that the motivations for hate are as diverse as the people who form the racial, religious, and mixed-gender melting pot that is the United States of America. There are six main types of bias motivation including ***Race/Ethnicity/Ancestry/Bias***, ***Religion***, ***Sexual Orientation***, ***Gender Identity***, ***Disability*** and ***Gender***, of which the largest proportion is Race/Ethnicity/Ancestry Bias that accounts for more than 50% of all hate crimes in 2019. This suggests that bias between different races is the main cause of most hate crimes. In addition, different religious beliefs may also lead to some hate crimes, which may be due to the exclusivity of some religious beliefs to some extend. The bias motivation of hate crime are not only towards some specific minorities, it exists anywhere between many different groups.
 
 
 

@@ -9,7 +9,7 @@
 <br>
 <b>Choose the factor you want to compare</b>
 <select id="selectButton3"></select>
-<div id="my_dataviz"></div>
+<div id="interactive_area"></div>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 ```{r echo=FALSE}
@@ -27,7 +27,6 @@ r2d3(data=df61, script = "./interactive.js")
 
 
 
-This interactive plot enables people to choose any two states in US and then choose one of the three factors (total hate crime cases/, hate crime cases per 100k and median income) to compare 
-
-in a much more clear and direct way. As we have shown in the result part, income is one of the key socioeconomic factors that have some correlations with hate crimes. Here, the interactive plot also 
+This interactive plot enables people to choose any two states in US and then choose one of the three factors (total hate crime cases, hate crime cases per 100k and median income) to compare 
+in a much more clear and direct way. As we have shown in the result part, income is one of the key socioeconomic factors that have some correlations with hate crimes. The interactive plot also allows comparison of total hate crime cases in different states. Some states may appear at the very bottom of the plot when comparing total cases because they have relatively low total cases compared to the range of y-axis, which is determined by the maximum value of total cases, 1300+ total cases from California.
 

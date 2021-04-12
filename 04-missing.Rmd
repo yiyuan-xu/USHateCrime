@@ -175,3 +175,9 @@ visna(year, sort = "b")
 
 The graph shows that there are two missing patterns in the 'Mixed_data.csv'. The most frequent one is that no data is missing. The remaining one is that one has missing values in three columns Case, Population and hate_crime_per_100k.
 
+
+## Actions on missing/abnormal values
+
+* It can be noticed that in the mixed data file, Puerto Rico losts most of its data, including hate crime data. Thus it cannot provide any useful information to the analysis. After consideration, we decide to remove Puerto Rico from the dataset. 
+
+* The District of Columbia, on the one hand, losts its educational data, on the other hand, has an unusual high crime rate(number of hate crime cases per 100k population). After drawing boxplot of the data we conclude that data from District of Columbia is an extreme outlier. Taking into consideration of [District of Columbia's demographics, geography and unique criminal justice system](https://en.wikipedia.org/wiki/Crime_in_Washington,_D.C.) as well as the fact that District of Columbia is literaly a city not a state, we believe that District of Columbia is not a proper representation of state crime info and remove it from the dataset.
