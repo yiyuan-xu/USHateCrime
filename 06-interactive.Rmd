@@ -24,3 +24,10 @@ df61 = read.csv("./data/d3_data.csv",header = TRUE)
 
 r2d3(data=df61, script = "./interactive.js")
 ```
+
+
+
+This interactive plot enables people to choose any two states in US and then choose one of the three factors (total hate crime cases/, hate crime cases per 100k and median income) to compare 
+
+in a much more clear and direct way. As we have shown in the result part, income is one of the key socioeconomic factors that have some correlations with hate crimes. Here, the interactive plot also 
+

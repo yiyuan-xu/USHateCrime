@@ -85,7 +85,10 @@ The source data have hate crimes cases and population covered for each state in 
 
 * year: 2010, 2011,..., 2019
 
-
+```{r echo=FALSE}
+year = read.csv("./data/year.csv",header = TRUE)
+head(year)
+```
 
 ## D3 Data
 
