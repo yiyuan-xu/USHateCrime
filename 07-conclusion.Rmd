@@ -1,2 +1,14 @@
 # Conclusion
 
+
+With data of hate crimes in 2019's US, we gain many insights about the general condition of hate crime on the aspects of its case numbers, occurring locations, offenders and bias motivations. Also, we compare other 2019's data of some socioeconomic factors with hate crime and discover some possible correlations among them. We realize that not living conditions of a poor quality but of an inequality lead to the occurrence of hate crimes. Moreover, by collecting a decade's hate crime data by state, we explore the trends of hate crime in the US and also in each state. Finally, the D3 part enables us to compare the ten years' change of different variables in different states.
+
+
+However, there are still many limitations for our project and many improvements need to be done for future work.
+
+
+- The source data itself has many limitations. Due to the particularity of the definition of hate crime, it requires voluntary participation of multiple agencies to define it. Therefore, when institutions change, the areas and populations covered by hate crime data will fluctuate, making the data in different periods not very comparable. Also, it could mean that states with law enforcement agencies and residents that are more likely to report hate crimes and hate incidents are overrepresented in these areas. Thus, we hope to collect more stable, detailed and comprehensive hate crime data for future work to enrich our data set so that samples will be more representative.
+
+
+
+- When analyzing the factors that may affect hate crime rate, the observations we use are various indicators of states in the United States in one certain year. A insufficient size of samples may cause our conclusions to lack credibility, certainty and representativeness. Hence, in the future, we will take more factors into consideration and verify the conclusions with data at different time points.

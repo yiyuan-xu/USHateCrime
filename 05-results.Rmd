@@ -205,7 +205,7 @@ ggplot(tidy1,aes(x=Value, y=State, color=Measure))+
 
 
 
-From the two graphs on the bachelor rate, especially the Cleveland graph, areas with higher crime rates are more likely to have higher bachelor rates and the smoothing line has a similar slope as one in education level plot. This observation also supports our findings before that with higher educational levels, hate crime rates are supposed to be high too.
+From the two graphs on the bachelor rate, especially the Cleveland graph, areas with higher bachelor rates are more likely to have higher crime rates and the smoothing line has a similar slope as one in education level plot. The result also supports our findings before that with higher educational levels, hate crime rates are supposed to be high. The possible reason for this surprising observation might be that with a increasing demand of a college degree in today's society, individuals with low level of education are not able to earn as much as their college-educated neighbors.This income inequality combined with their identities as a minority group in a state with generally high education level may greatly motivate those less educated people to do hate crimes.
 
 
 
@@ -222,7 +222,7 @@ ggplot(clean_data, aes(x=Median.Income, y=Crime_rate))+
 ```
 
 
-From this plot, we can see that the relationship between household income and hate crime rate is very similar to the relationship between education level and hate crime rate in the previous part. Moreover, from the initial overview of correlations among different variables, it can be seen that the education level and income do have a very strong correlation with a value around 0.86. We may conclude that similar to education level, median income has a positive correlation with hate crimes.
+From this plot, we can see that the relationship between household income and hate crime rate is very similar to the relationship between education level and hate crime rate in the previous part. Moreover, from the initial overview of correlations among different variables, it can be seen that the education level and income do have a very strong correlation with a value around 0.86. This provides us with confidence to conclude that similar to education level, median income has a positive correlation with hate crimes.
 
 
 

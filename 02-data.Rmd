@@ -90,7 +90,7 @@ Since the Kaiser Family Foundation's website only has median household income da
 
 
 
-## The limitations of data:
+## The limitations of data
 
 - It remains unclear how comprehensive UCR's data is since data is submitted voluntarily.
 - Some data in UCR's publication may not be comparable to those in prior editions of Hate Crime Statistics because of differing levels of participation from year to year.
