@@ -1,1 +1,74 @@
 # Data transformation
+
+## Background Data
+
+
+In order to provide some information about 2019's hate crime in U.S., we get data about hate crime's bias motivation, location and information of offenders. Since the goal of all these data files is simply to show their content, we do not do much transformation on them.
+
+
+### Bias Motivation Data
+
+
+Since this data file is used to show types of bias motivations and the corresponding values of hate crime cases, we simply download the excel file of the source data, delete useless columns, and finally convert it into csv. The columns we keep from raw data are:
+
+* Bias_Motivation
+
+* Incidents
+
+* Category
+
+
+
+### Location Data 
+
+
+The source data have many columns including one column of location type and one column of total incidents happened in the corresponding type of location. We download the excel file of the source data, delete other columns, keep the two columns described before and then transform the file into a csv file. The columns we use from raw data are:
+
+* Location
+
+* Total incidents (renamed as Num in our file)
+
+
+### Offenders Data
+
+
+The original data table shows the number of offenders for specific race, ethnicity and age. Its column names are:
+
+* Race/Ethnicity/Age
+
+* Total
+
+We can see that it includes all types of information into one column. Thus, after downloading the excel file, we add one Group column which declares whether the entity is a type of race, ethnicity or age and then transform it into a csv file. The columns in our table now are:
+
+* Offenders: specific race/ethnicity/age such as White/Hispanic/<18
+
+* Num: same as column of Total in the original table
+
+* Group: can only be race, ethnicity or age
+
+
+## Factor Data
+
+
+
+
+## Time Series Data 
+
+
+The source data have hate crimes cases and population covered for each state in one year. We then download excel files including data from 2010 to 2019. For each year's data table, we only keep columns of the total number of offense cases, state names and population covered. We also calculate hate crime cases per 10k population and add another column to indicate which year the state's hate crime data is from. Finally, we combine all year's tables into one csv file. The final transformed table includes values:
+
+* State 
+
+* Case
+
+* Population
+
+* hate_crime_per_10k: Case/(Population/100000)
+
+* year: 2010, 2011,..., 2019
+
+
+
+## D3 Data
+
+

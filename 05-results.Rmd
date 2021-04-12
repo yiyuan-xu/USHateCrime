@@ -1,1 +1,299 @@
 # Results
+
+
+
+```{r,include=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(choroplethr)
+library(EDAWR)
+library(GGally)
+library(dplyr)
+library(parcoords)
+library(d3r)
+library(hexbin)
+library(statebins)
+library(gridExtra)
+library(treemap)
+library(gdata)
+library(readxl)
+library(ggplot2)
+library(ggpubr)
+library(wordcloud2)
+```
+
+
+## How do US hate crimes look like in 2019?
+
+First and foremost, in order to have a rough understanding of 2019's US hate crimes, we explore the aspects of hate crimes' locations, offenders and bias motivation behind in the U.S. in 2019.  
+
+### Locations of hate crimes
+```{r,message=FALSE,fig.height=7,echo=FALSE}
+location_data<-read_csv("data/location.csv")
+location_data$Num<-as.numeric(location_data$Num)
+ggplot(location_data,aes(x=fct_reorder(Location,Num),y=Num)) + 
+  geom_col(fill = "lightblue") + coord_flip()+
+  xlab("Location")+ggtitle("Hate Crime by Location in 2019")
+```
+
+The plot above shows that the locations where hate crimes happened most frequently in 2019 are victims' homes. Home, a place that usually gives people a feeling of peace and security, is actually a place where crimes happen frequently. This observation reminds us to pay attention to security problems even when we are at home. Other places that hate crimes may often happen are streets, highways, roads and sidewalks. A school is also a location that hate crimes occur frequently, which makes sense as it includes people from all kinds of races and ethnicities. Hate crimes not often occur in places such as tribal lands, docks and gambling facilities.
+
+
+
+### Offenders of hate crimes
+```{r,message=FALSE,fig.width=16,fig.height=8,echo=FALSE}
+offenders<-read_csv("data/Offenders.csv")
+offenders$Num<-as.numeric(offenders$Num)
+a<- offenders%>%filter(Group == "Race") %>% ggplot(aes(x=fct_reorder(Offenders,Num),y=Num)) + 
+  geom_col(fill = 'lightblue')+xlab("")+ggtitle("Race")
+b<- offenders%>%filter(Group == "Ethnicity") %>% ggplot(aes(x=fct_reorder(Offenders,Num),y=Num))  + 
+  geom_col(fill = 'yellowgreen') +xlab("")+ggtitle("Ethnicity") 
+c<- offenders%>%filter(Group == "Age") %>% ggplot(aes(x=fct_reorder(Offenders,Num),y=Num))  + 
+  geom_col(fill = 'orange') +xlab("")+ggtitle("Age") 
+grid.arrange(a, b, c,nrow=1,widths = c(6,3,2))
+```
+
+
+These bar charts show information of known offenders about their races, ethnicities and ages. For races, most offenders are White and then Black/African Americans. For ethnicities, most offenders do not provide their ethnicities. Most of the rest are not Hispanic or Latino. All these match the distributions of people's races and ethnicities in the US. For ages, the majority are equal to or greater than eighteen years old. 
+
+
+
+
+
+### Bias motivations behind hate crimes
+```{r,fig.width=8,echo=FALSE,message=FALSE}
+small_class<-read_csv("data/BiasMotivation.csv")
+colnames(small_class)[1]<-"Class"
+colnames(small_class)[2]<-"freq"
+colnames(small_class)[3]<-"category"
+small_class$freq<-as.numeric(small_class$freq)
+treemap(small_class,index = c("category","Class"), vSize = "freq", vColor = "Class",type="index",title='Treemap of Bias motivation behind hate crime in US', palette = "RdBu")
+```
+
+The graph above shows the distribution of bias motivation in 2019.  We can see that the motivations for hate are as diverse as the people who form the racial, religious, and mixed-gender melting pot that is the United States of America. There are six main types of bias motivation including Race/Ethnicity/Ancestry/Bias, Religion, Sexual Orientation, Gender Identity, Disability and Gender, of which the largest proportion is Race/Ethnicity/Ancestry Bias, accounting for more than 50% of all. It means bias between different races is the main cause of most hate crimes. In addition, different religious beliefs may also lead to some hate crimes, which may be due to the exclusivity of some religious beliefs to some extend. The bias motivation of hate crime are not only towards some specific minorities, it exists anywhere between many different groups.
+
+
+
+
+
+
+
+## How do a state's socioeconomic factors influence its hate crime in 2019?
+
+In this part, we look at each state's hate crimes in detail and try to find what influences a state's hate crimes.
+
+```{r,echo=FALSE}
+mixed_data=read.csv("data/Mixed_data.csv",header = TRUE) %>% na_if("N/A")
+mixed_data <- mixed_data %>% filter(State != 'Puerto Rico')
+mixed_data$Offenses <- as.numeric(mixed_data$Offenses)
+mixed_data$Median.Income <- as.numeric(mixed_data$Median.Income)
+mixed_data$Education.Level <- as.numeric(mixed_data$Education.Level)
+mixed_data$Citizenship.Status <- as.numeric(mixed_data$Citizenship.Status)
+mixed_data$Race.Ethnicity <- as.numeric(mixed_data$Race.Ethnicity)
+mixed_data$Unemployment.Rate <- as.numeric(mixed_data$Unemployment.Rate)
+mixed_data$Population <- as.numeric(mixed_data$Population)
+mixed_data$Cost.of.Living <- as.numeric(mixed_data$Cost.of.Living)
+mixed_data$High_School_Rate <- as.numeric(mixed_data$High_School_Rate)
+mixed_data$Bachelor_Rate <- as.numeric(mixed_data$Bachelor_Rate)
+mixed_data <- mutate(mixed_data, Living_index=Median.Income/Cost.of.Living)
+mixed_data <- mutate(mixed_data, Crime_rate=Offenses/Population*100000)
+md <- mixed_data %>% 
+  gather(key,value, -State) %>% mutate(missing = ifelse(is.na(value),"yes","no"))
+
+# map_data for drawing statebins maps
+map_data = mixed_data %>% select(State, Crime_rate) %>% rename(state=State)
+
+# clean_data excludes DC and Hawaii
+clean_data <- filter(mixed_data, State != "District of Columbia" & State != "Hawaii")
+
+# parcoord_date
+parcoord_data = select(clean_data,c("State","Median.Income","Bachelor_Rate","Race.Ethnicity","Crime_rate","Political.Party"))
+```
+
+
+
+
+### Hate crimes by States in 2019
+```{r echo=FALSE}
+
+statebins(filter(map_data, state != "District of Columbia" & state != "Hawaii"),value_col = "Crime_rate", name="Per 100K pop", direction=1)+
+    ggtitle("State Crime, 2019")+
+    theme_statebins()
+```
+
+This is the plot that shows 2019's hate crime cases per 100k population in each state. It seems that there is no specific pattern here. WA has the highest value of hate crime cases per 100k population around 9 and then NM. States such as OR and NJ have relatively high values of hate crime cases per 100k population while states such as AR and AL have relatively low values of hate crime cases per 100k population which almost equal to zero in 2019. All states have values of hate crime cases between 0 and 10.
+
+
+
+
+
+
+
+### Factors that may influence hate crimes
+
+
+```{r,echo=FALSE}
+parcoords(parcoord_data, rownames = F, brushMode = "1D-axes",reorderable = T,color = list(colorBy = "Political.Party"),withD3 = T, width=800, height = 700,alpha=0.7)
+```
+
+```{r, echo=FALSE,fig.width=10,fig.height=12,message=FALSE}
+ggpairs(clean_data,column = c(14,3,4,5,6,8,10),cardinality_threshold = 49,)
+```
+
+
+
+
+
+
+#### Education
+
+```{r, echo=FALSE,message=FALSE}
+ggplot(clean_data, aes(x=Education.Level, y=Crime_rate))+
+  geom_point()+
+  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
+  theme_classic(14)+ylab("hate crime per 100k")
+```
+
+```{r, echo=FALSE,message=FALSE}
+ggplot(clean_data, aes(x=Bachelor_Rate, y=Crime_rate))+
+  geom_point()+
+  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
+  theme_classic(14)+ylab("hate crime per 100k")
+```
+
+```{r,echo=FALSE}
+tidy_data = clean_data
+tidy_data = mutate(tidy_data, State=fct_reorder(State, Crime_rate))
+
+tidy_data$Living_index = tidy_data$Living_index/100
+tidy_data$High_School_Rate = tidy_data$High_School_Rate/10
+tidy_data = tidy_data %>% pivot_longer(cols = c(Crime_rate,Living_index,High_School_Rate,Bachelor_Rate,Race.Ethnicity,Citizenship.Status),names_to = "Measure", values_to = "Value")
+
+tidy1 = filter(tidy_data, Measure %in% c("Bachelor_Rate","Crime_rate"))
+ggplot(tidy1,aes(x=Value, y=State, color=Measure))+
+  geom_point()
+```
+
+
+```{r, echo=FALSE,message=FALSE}
+ggplot(clean_data, aes(x=High_School_Rate, y=Crime_rate))+
+  geom_point()+
+  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
+  theme_classic(14)+ylab("hate crime per 100k")
+```
+
+
+
+
+
+
+#### Median Income
+```{r,echo=FALSE,message=FALSE}
+ggplot(clean_data, aes(x=Median.Income, y=Crime_rate))+
+  geom_point()+
+  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
+  theme_classic(14)+ylab("hate crime per 100k")
+```
+
+
+
+
+#### Citizenship Status
+```{r,echo=FALSE,message=FALSE}
+ggplot(clean_data, aes(x=Citizenship.Status, y=Crime_rate))+
+  geom_point()+
+  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
+  theme_classic(14)+ylab("hate crime per 100k")
+```
+
+```{r,echo=FALSE,message=FALSE}
+ggplot(clean_data, aes(Citizenship.Status,Crime_rate))+
+  scale_fill_gradient(low="lightblue",high="darkblue",trans="log10")+
+  geom_hex(binwidth = c(0.01,0.5))+ylab("hate crime per 100k")
+```
+
+
+
+
+#### Race and Ethnicity
+```{r,echo=FALSE,message=FALSE}
+ggplot(clean_data, aes(x=Race.Ethnicity, y=Crime_rate))+
+  geom_point()+
+  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
+  theme_classic(14)+ylab("hate crime per 100k")
+```
+
+
+
+
+#### Unemployment Rate
+```{r,echo=FALSE,message=FALSE}
+ggplot(clean_data, aes(x=Unemployment.Rate, y=Crime_rate))+
+  geom_point()+
+  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
+  theme_classic(14)+ylab("hate crime per 100k")
+```
+
+
+
+
+#### Political Party
+```{r,echo=FALSE}
+ggplot(clean_data, aes(x=Political.Party, y=Crime_rate)) +
+  geom_boxplot()+ylab("hate crime per 100k") +xlab("Political Party")
+```
+
+
+From this boxplot, we can see that in 2019 Republican-led states had lower median value of hate crime cases per 100k population than state governed by Democratic. Also, values of hate crime cases per 100k population in states which governors are democrat are in a larger range while Republican states are concentrated at a relatively low value. Based on that, we may assume that the policy or laws made by Republican may play a better role in eliminating hate crimes.
+
+
+
+
+## How do hate crimes change in US from 2010 to 2019?
+
+
+Finally, by looking at hate crime data in 2010-2019, we hope to see how the number of hate crimes per 100k changes during this decade.
+
+### Hate crimes in US in 2010-2019
+```{r,message=FALSE,echo=FALSE}
+ts <- read_csv("data/year.csv")
+total  <- ts %>% group_by(year) %>% summarise(total_case = sum(Case, na.rm = TRUE),total_popu = sum(Population, na.rm = TRUE))
+total <- total %>% mutate(total_crime_rate_per_100k = total_case/(total_popu/100000))
+ggplot(total, aes(year,total_crime_rate_per_100k))+geom_line(color='orange')+
+  scale_x_continuous(breaks=seq(2010,2019,1))+ylab("hate crime per 100k")+
+  ggtitle('US Hate Crime per 100k in 2010-2019')
+```
+
+
+The plot above shows the 2010-2019's values of hate crime cases per 100k population in the entire US. The data is presented in a rough "V" shape. The range is between two and three hate crime cases per 100k population. The lowest one (around 2.15) is in 2014 while the highest one is in 2017 (around 2.75). The reason why 2017 has a high value might be that it was a year when presidents changed. 
+
+
+
+### Hate Crimes by States in 2010-2019
+
+```{r,warning=FALSE,fig.width=10,echo=FALSE,include=FALSE}
+ts_clean <- ts %>% drop_na() %>% filter(State != "District of Columbia")
+ggplot(ts_clean,aes(x=year,y=hate_crime_per_100k,group=year))+geom_boxplot()+
+  scale_x_continuous(breaks=seq(2010,2019,1))+ggtitle("State Hate Crime Rate in 2010-2019")
+```
+
+
+```{r,fig.height=10,fig.width=10,echo=FALSE}
+ggplot(ts_clean,aes(year,hate_crime_per_100k))+geom_line()+
+  scale_x_continuous(breaks=seq(2010,2019,5))+facet_wrap(~State)+
+  ggtitle("State Hate Crime per 100k in 2010-2019")
+```
+
+The plots above show each state's hate crime cases per 100k population from 2010 to 2019. It seems that there does not exist a general pattern here.A lot of states such as Illinois and Iowa tend to maintain their levels of hate crimes while some states such as North Dakota and Vermont tend to fluctuate greatly during this decade. Also, most of states fluctuate in a range between 2 and 5 cases per 100k population. Some may have higher values but all states' values of hate crimes are under 10 cases per 100k population.
+
+
+
+```{r,include=FALSE}
+DC<-ts %>% filter(State == "District of Columbia")
+ggplot(DC,aes(year,hate_crime_per_100k))+geom_line()+
+  scale_x_continuous(breaks=seq(2010,2019,1))+
+  ggtitle("DC Hate Crime Rate in 2010-2019")
+```
+
+
+

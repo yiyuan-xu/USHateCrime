@@ -1,2 +1,80 @@
 # Data sources
 
+* Hate Crime (2010-2019):
+
+The main source data we used is from the official website of FBI's UCR Program which generates reliable crime statistics. One table is about numbers of hate crimes in the United States over the past ten years. In another table, we select the hate crime data in 2019(the latest one) as cross-sectional data to study the composition of hate crime and possible influencing factors. This dataset collects details about offenders’ bias motivation associated with 13 offense types already being reported to the UCR Program: murder and nonnegligent manslaughter, rape, aggravated assault, simple assault, intimidation, human trafficking—commercial sex acts, and human trafficking—involuntary servitude (crimes against persons); and robbery, burglary, larceny-theft, motor vehicle theft, arson, and destruction/damage/vandalism (crimes against property) in each state. 
+
+
+
+* Socioeconomic factors (2019) [Median Income, Citizenship, Race/Ethnicity, Unemployment, Political Party]:
+
+We obtain part of socioeconomic factors we think that may have impacts on hate crimes from Kaiser Family Foundation's website. This website is a nonprofit organization focusing on national health issues, as well as the U.S. role in global health policy. We use data on population demographics and wealth including breakdowns by race/ethnicity (proportion of white), poverty by demographic groupings and unemployment rates.
+
+* Education (2019):
+
+* Income (2010-2019): 
+
+## Data interpretation
+
+* Bias Motivation file
+
+1) Bias_Motivation[char]: the specific type of bias motivation
+2) Incidents[numeric]: the number of hate crimes
+3) Category[char]: the category of bias motivation
+
+
+
+* location file
+
+1) Location[char]: the specific type of location where hate crimes occur
+2) Num[numeric]: the number of hate crimes
+
+
+* Offenders file
+
+1) Offenders[char]:the specific information of offenders
+2) Num[numeric]: the number of offenders
+3) Group[char]: 'Race' or 'Ethnicity' or 'Age'
+
+
+* Mixed_data file
+
+1) State[char]: the name of a state
+2) Offenses[numeric]: the number of hate crimes
+3) Median.Income[numeric]: median income in each state
+4) Education.Level[numeric]: the scores represent educational Attainment and quality of Education
+5) High_School_Rate[numeric]: the share of adults over 25 years old with a high school diploma
+6) Bachelor_Rate[numeric]: the share of adults over 25 years old with a Bachelors degree
+7) Citizenship.Status[numeric]: the proportion of citizen in each state
+8) Race.Ethnicity[numeric]: the proportion of white people in each state
+9) Political.Party[char]: state governor political affiliation (Democrat or Republican)
+10) Unemployment[numeric]: unemployment within the civilian non-institutional population aged 16 years and older (seasonally adjusted)
+11) Population[numeric]: population covered in hate crime report
+
+
+* year file
+
+1) State[char]: the name of a state
+2) Case[numeric]: the number of hate crimes
+3) Population[numeric]: population covered in hate crime report
+4) hate_crime_per_100k[numeric]: the number of hate crime cases per 100k population
+5) year[date]: the year of report
+
+
+* d3_data file
+
+1) State[char]: the name of a state
+2) Offenses[numeric]: the number of hate crimes
+3) Population[numeric]: population covered in hate crime report
+4) Crime Rate[numeric]: the number of hate crime cases per 100k population
+5) Median Income[numeric]: 
+6) Year[date]: the year of report
+
+
+
+## The limitations of data:
+- Unclear how comprehensive UCR's data is since data is submitted voluntarily.
+- Some data in UCR's publication may not be comparable to those in prior editions of Hate Crime Statistics because of differing levels of participation from year to year.
+- Most of the data is presented in the overall statistical data of each state, which may ignore some detailed features, and it also makes us seem to have very few observational data.
+
+
