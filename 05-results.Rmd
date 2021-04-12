@@ -147,21 +147,23 @@ ggpairs(clean_data,column = c(14,3,4,5,6,8,10),cardinality_threshold = 49,)
 
 #### Education
 
-```{r, echo=FALSE,message=FALSE}
+```{r, echo=FALSE,message=FALSE,out.width="50%"}
 ggplot(clean_data, aes(x=Education.Level, y=Crime_rate))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
-  theme_classic(14)+ylab("hate crime per 100k")
+  theme_classic(14)+ylab("hate crime per 100k")+theme(legend.position="none")
+ggplot(clean_data, aes(x=High_School_Rate, y=Crime_rate))+
+  geom_point()+
+  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
+  theme_classic(14)+ylab("hate crime per 100k")+theme(legend.position="none")
 ```
 
-```{r, echo=FALSE,message=FALSE}
+
+```{r,echo=FALSE,out.width="50%"}
 ggplot(clean_data, aes(x=Bachelor_Rate, y=Crime_rate))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
-  theme_classic(14)+ylab("hate crime per 100k")
-```
-
-```{r,echo=FALSE}
+  theme_classic(14)+ylab("hate crime per 100k")+theme(legend.position="none")
 tidy_data = clean_data
 tidy_data = mutate(tidy_data, State=fct_reorder(State, Crime_rate))
 
@@ -174,13 +176,10 @@ ggplot(tidy1,aes(x=Value, y=State, color=Measure))+
   geom_point()
 ```
 
+In this part, we study the possible relationship between education level and hate crime. People usually associate a high level of education with a low crime rate in our subconscious mind but the result shown in the first plot is somewhat surprising. Except for a few points, as the level of education increases, the hate crime rate has also an increasing trend. The obvious positive slope of the smooth line also shows that from this graph, education level and hate crime rate are positively correlated.
 
-```{r, echo=FALSE,message=FALSE}
-ggplot(clean_data, aes(x=High_School_Rate, y=Crime_rate))+
-  geom_point()+
-  geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
-  theme_classic(14)+ylab("hate crime per 100k")
-```
+Since education level is a relatively overall factor and we hope to have a deeper understanding of this factor, we decompose the educational factor into high school graduation rate and undergraduate rate to explore the influethence of basic education and higher education on crime rate. In high_school_rate-hate_crime_rate plot, it is not difficult to see that there is no obvious relationship between the high school education rate and the crime rate. Even if the high school education rate increases, the crime rate remains at a relatively stable level. From the two graphs on the bachelor rate, especially the Cleveland graph, areas with higher crime rates are more likely to have a higher bachelor rate and the smoothing line has a similar slope as one in education level plot.
+
 
 
 
@@ -192,27 +191,25 @@ ggplot(clean_data, aes(x=High_School_Rate, y=Crime_rate))+
 ggplot(clean_data, aes(x=Median.Income, y=Crime_rate))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
-  theme_classic(14)+ylab("hate crime per 100k")
+  theme_classic(14)+ylab("hate crime per 100k")+theme(legend.position="none")
 ```
 
-
+From this plot, we can see that the relationship between income and hate crime rate is very similar to the relationship between education rate and hate crime rate in the previous part. And from the initial overview, it can be seen that the education rate and income do have a very strong correlation. We may conclude that median income has a positive correlation with hate crime as education level.
 
 
 #### Citizenship Status
-```{r,echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE,out.width="50%"}
 ggplot(clean_data, aes(x=Citizenship.Status, y=Crime_rate))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
-  theme_classic(14)+ylab("hate crime per 100k")
-```
-
-```{r,echo=FALSE,message=FALSE}
+  theme_classic(14)+ylab("hate crime per 100k")+theme(legend.position="none")
 ggplot(clean_data, aes(Citizenship.Status,Crime_rate))+
   scale_fill_gradient(low="lightblue",high="darkblue",trans="log10")+
   geom_hex(binwidth = c(0.01,0.5))+ylab("hate crime per 100k")
 ```
 
 
+These two plots display the relationship between citizenship status(rate) and hate crime rate. The best fitting line in the first scatter chart shows a downward trend, which means that as the citizen rate increases, hate crime rate will decrease instead. As for the second heat map, most of the observations are concentrated in the lower right corner, which shows that there are more points at high citizen rate and low crime rate, and there may be a corresponding relationship between them.
 
 
 #### Race and Ethnicity
@@ -220,10 +217,10 @@ ggplot(clean_data, aes(Citizenship.Status,Crime_rate))+
 ggplot(clean_data, aes(x=Race.Ethnicity, y=Crime_rate))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
-  theme_classic(14)+ylab("hate crime per 100k")
+  theme_classic(14)+ylab("hate crime per 100k")+theme(legend.position="none")
 ```
 
-
+This picture depicts the race composition(the proportion of white people) and hate crime rate. Even if the race rate keeps increasing, the distribution of hate crime still appears chaotic, which shows that the composition of Race/Ehicity does not have a relatively intuitive impact on the hate crime rate.
 
 
 #### Unemployment Rate
@@ -231,15 +228,14 @@ ggplot(clean_data, aes(x=Race.Ethnicity, y=Crime_rate))+
 ggplot(clean_data, aes(x=Unemployment.Rate, y=Crime_rate))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE ,aes(color='red'))+
-  theme_classic(14)+ylab("hate crime per 100k")
+  theme_classic(14)+ylab("hate crime per 100k")+theme(legend.position="none")
 ```
 
-
-
+This graph shows the relationship between unemployment rate and hate crime. It can be seen from the best fitting line and point distribution that as the unemployment rate rises, the hate crime rate will also increase slightly, which is consistent with our common sense.
 
 #### Political Party
 ```{r,echo=FALSE}
-ggplot(clean_data, aes(x=Political.Party, y=Crime_rate)) +
+ggplot(clean_data, aes(x=Political.Party, y=Crime_rate,fill=Political.Party)) +
   geom_boxplot()+ylab("hate crime per 100k") +xlab("Political Party")
 ```
 
