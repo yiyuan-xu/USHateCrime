@@ -4,7 +4,7 @@ Hate crime is always a controversial and topical problem in the US. In this proj
 
 ## Book URL
 
-yiyuan-xu.github.io/ushatecrime/
+https://yiyuan-xu.github.io/USHateCrime/
 
 
 *This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate.*	
